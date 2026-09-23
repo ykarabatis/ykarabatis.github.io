@@ -1,5 +1,3 @@
-cd /c/Yianni/mysite
-cat > index.html << 'EOF'
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
@@ -25,13 +23,10 @@ cat > index.html << 'EOF'
                 </p>
                 <p>
                   I'm a Ph.D. student in the department of computer science at the
-                  <a href="https://www.cs.umd.edu/">University of Maryland, College Park</a>.
-                  TODO: one or two sentences on what you work on, who you're advised by,
-                  and anything else worth putting up front.
+                  <a href="https://www.cs.umd.edu/">University of Maryland, College Park</a>, advised by Yiannis Aloimonos.
+                  
                 </p>
                 <p style="text-align:center">
-                  <a href="mailto:TODO@umd.edu">Email</a> &nbsp;/&nbsp;
-                  <a href="data/CV.pdf">CV</a> &nbsp;/&nbsp;
                   <a href="https://scholar.google.com/citations?user=TODO">Scholar</a> &nbsp;/&nbsp;
                   <a href="https://github.com/ykarabatis">Github</a>
                 </p>
@@ -48,7 +43,7 @@ cat > index.html << 'EOF'
               <td style="padding:16px;width:100%;vertical-align:middle">
                 <h2>Research</h2>
                 <p>
-                  TODO: a sentence about your research interests. Some papers are
+                  I am interested in using computer vision and computational imaging to see other modalities. Some papers are
                   <span class="highlight">highlighted</span>.
                 </p>
               </td>
@@ -58,45 +53,44 @@ cat > index.html << 'EOF'
           <!-- ===== papers ===== -->
           <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
-            <tr onmouseout="project1_stop()" onmouseover="project1_start()" bgcolor="#ffffd0">
+            <tr onmouseout="evspeech_stop()" onmouseover="evspeech_start()" bgcolor="#ffffd0">
               <td style="padding:16px;width:20%;vertical-align:middle">
                 <div class="one">
-                  <div class="two" id='project1_image'>
-                    <img src='images/project1_after.jpg' width=100%>
+                  <div class="two" id='evspeech_image'>
+                    <img src='images/evspeech_after.jpg' width=100%>
                   </div>
-                  <img src='images/project1_before.jpg' width=100%>
+                  <img src='images/evspeech_before.jpg' width=100%>
                 </div>
                 <script type="text/javascript">
-                  function project1_start() {
-                    document.getElementById('project1_image').style.opacity = "1";
+                  function evspeech_start() {
+                    document.getElementById('evspeech_image').style.opacity = "1";
                   }
-                  function project1_stop() {
-                    document.getElementById('project1_image').style.opacity = "0";
+                  function evspeech_stop() {
+                    document.getElementById('evspeech_image').style.opacity = "0";
                   }
-                  project1_stop()
+                  evspeech_stop()
                 </script>
               </td>
               <td style="padding:8px;width:80%;vertical-align:middle">
-                <a href="TODO">
-                  <span class="papertitle">Paper Title Goes Here</span>
-                </a>
+                <span class="papertitle">Learning to Reconstruct Speech with an Event Camera</span>
                 <br>
-                <strong>Yianni Karabatis</strong>,
-                <a href="TODO">Coauthor Name</a>
+                <strong>Yianni Karabatis</strong>, Levi Burner, Eadom Dessalene, Matthew Nolan, Christopher A. Metzler, Cornelia Fermuller, Ramani Duraiswami, Yiannis Aloimonos
                 <br>
-                <em>Venue</em>, 2026 &nbsp <font color="red"><strong>(Oral Presentation)</strong></font>
+                <em>Submitted to ICASSP</em>, 2027
                 <br>
-                <a href="TODO">project page</a>
-                /
-                <a href="TODO">arXiv</a>
-                /
-                <a href="TODO">code</a>
+                TODO links
                 <p></p>
                 <p>
-                  One sentence describing what the paper does and why it matters.
+                  A learned model recovers intelligible speech from the event stream of a laser
+                  speckle pattern on a vibrating surface, trained end to end on real recordings
+                  rather than simulation.
                 </p>
               </td>
             </tr>
+
+            <!-- Template for the next paper. Uncomment and rename project2 -> a new
+                 unique prefix in all five spots (two tr attributes, the div id, the two
+                 function names) or the hover will break on both rows.
 
             <tr onmouseout="project2_stop()" onmouseover="project2_start()">
               <td style="padding:16px;width:20%;vertical-align:middle">
@@ -133,6 +127,8 @@ cat > index.html << 'EOF'
                 </p>
               </td>
             </tr>
+
+            -->
 
           </tbody></table>
 
@@ -174,4 +170,3 @@ cat > index.html << 'EOF'
     </table>
   </body>
 </html>
-EOF
