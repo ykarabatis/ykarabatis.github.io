@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning to Reconstruct Speech with an Event Camera</title>
+<style>
+  :root { --fg:#1a1a1a; --muted:#666; --rule:#e2e2e2; --accent:#1a5fb4; }
+  body { margin:0; padding:0 20px 80px; color:var(--fg);
+         font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+         line-height:1.6; }
+  .wrap { max-width:900px; margin:0 auto; }
+  h1 { font-size:2.0em; font-weight:600; line-height:1.25; text-align:center;
+       margin:56px 0 24px; }
+  h2 { font-size:1.35em; font-weight:600; margin:48px 0 12px;
+       padding-bottom:6px; border-bottom:1px solid var(--rule); }
+  .authors { text-align:center; font-size:1.1em; margin-bottom:6px; }
+  .affil { text-align:center; color:var(--muted); margin-bottom:24px; }
+  .links { text-align:center; margin-bottom:40px; }
+  .links a { display:inline-block; margin:4px 5px; padding:8px 18px;
+             background:var(--fg); color:#fff; border-radius:20px;
+             text-decoration:none; font-size:0.95em; }
+  .links a:hover { background:var(--accent); }
+  figure { margin:0 0 8px; }
+  img, video { width:100%; max-width:100%; height:auto; display:block; }
+  figcaption { color:var(--muted); font-size:0.9em; margin-top:8px; }
+  table { width:100%; border-collapse:collapse; margin-top:12px; font-size:0.95em; }
+  th, td { padding:9px 10px; border-bottom:1px solid var(--rule); text-align:center; }
+  th { font-weight:600; }
+  td:first-child, th:first-child { text-align:left; }
+  tr.ours td { font-weight:600; }
+  tr.ceiling td { color:var(--muted); font-style:italic; }
+  audio { width:100%; min-width:150px; height:34px; }
+  .note { color:var(--muted); font-size:0.9em; }
+  pre { background:#f6f6f6; padding:14px 16px; border-radius:6px;
+        overflow-x:auto; font-size:0.85em; line-height:1.45; }
+  .scroll { overflow-x:auto; }
+  @media (prefers-color-scheme: dark) {
+    :root { --fg:#e8e8e8; --muted:#9a9a9a; --rule:#333; --accent:#78aeed; }
+    body { background:#111; }
+    .links a { background:#e8e8e8; color:#111; }
+    pre { background:#1c1c1c; }
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <h1>Learning to Reconstruct Speech with an Event Camera</h1>
+
+  <p class="authors">
+    <a href="https://ykarabatis.github.io">Yianni Karabatis</a>, Levi Burner, Eadom Dessalene, Matthew Nolan, Christopher A. Metzler, Cornelia Fermuller, Ramani Duraiswami, Yiannis Aloimonos
+  </p>
+  <p class="affil">University of Maryland, College Park</p>
+
+  <!-- <div class="links">
+    <a href="TODO">Paper</a>
+    <a href="TODO">arXiv</a>
+    <a href="TODO">Code</a>
+    <a href="TODO">Data</a>
+  </div> -->
+
+  <figure>
+    <img src="images/teaser.jpg" alt="teaser">
+    <figcaption>
+      TODO: one-line caption. A laser speckle pattern on a vibrating surface, viewed by an
+      event camera, carries enough information to recover intelligible speech.
+    </figcaption>
+  </figure>
+
+  <h2>Abstract</h2>
+  <p>
+    This work introduces the first event-based visual microphone method trained on real-world data.
+Specifically, an event camera observes defocused laser speckle reflected from a chip bag placed near a loudspeaker, and a network maps the event stream to a log-mel spectrogram.
+Prior work relies on hand-derived models or simulation-based training, which cannot capture the idiosyncratic responses of real-world objects to sound. We overcome this challenge by training on microsecond-synchronized events and audio. Compared to prior work, our method's performance significantly exceeds SOTA methods qualitatively and quantitatively. This is because training accounts for an object's real-world frequency response, allowing the network to learn priors useful at inference.
+Our results demonstrate a clear advantage to using experimental data in the visual microphone problem.
+  </p>
+
+  <h2>Method</h2>
+  <figure>
+    <img src="images/method.jpg" alt="method overview">
+    <figcaption>TODO: not a priority right now.</figcaption>
+  </figure>
+  <p>
+    TODO: can be done later
+  </p>
+
+  <h2>Audio results</h2>
+  <p class="note">
+    Held-out speakers, unseen during training. Headphones recommended.
+  </p>
+  <div class="scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>Example</th>
+        <th>Ground truth</th>
+        <th>Ours</th>
+        <th>Event2Audio</th>
+        <th>SpeckEVM</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><audio controls preload="none" src="audio\\gt\\DR4_FADG0_0000_target.wav"></audio></td>
+        <td><audio controls preload="none" src="audio\\ours\\DR4_FADG0_0000_pred.wav"></audio></td>
+        <td><audio controls preload="none" src="audio\\event2audio\\DR4_FADG0_0000_pred.wav"></audio></td>
+        <td><audio controls preload="none" src="audio/speckevm/DR4_FADG0_0000_pred.wav"></audio></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><audio controls preload="none" src="audio\\gt\\DR8_MSLB0_0004_target.wav"></audio></td>
+        <td><audio controls preload="none" src="audio\\ours\\DR8_MSLB0_0004_pred.wav"></audio></td>
+        <td><audio controls preload="none" src="audio\\event2audio\\DR8_MSLB0_0004_pred.wav"></audio></td>
+        <td><audio controls preload="none" src="audio/speckevm/DR8_MSLB0_0004_pred.wav"></audio></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><audio controls preload="none" src="audio\gt\DR8_MSLB0_0003_target.wav"></audio></td>
+        <td><audio controls preload="none" src="audio\ours\DR8_MSLB0_0003_pred.wav"></audio></td>
+        <td><audio controls preload="none" src="audio\event2audio\DR8_MSLB0_0003_pred.wav"></audio></td>
+        <td><audio controls preload="none" src="audio/speckevm/DR8_MSLB0_0003_pred.wav"></audio></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><audio controls preload="none" src="audio/gt/DR7_FCAU0_0004_target.wav"></audio></td>
+        <td><audio controls preload="none" src="audio/ours/DR7_FCAU0_0004_pred.wav"></audio></td>
+        <td><audio controls preload="none" src="audio/event2audio/DR7_FCAU0_0004_pred.wav"></audio></td>
+        <td><audio controls preload="none" src="audio/speckevm/DR7_FCAU0_0004_pred.wav"></audio></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Quantitative results</h2>
+  <div class="scroll">
+  <table>
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>ESTOI &uarr;</th>
+        <th>STOI &uarr;</th>
+        <th>PESQ &uarr;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="ours"><td>Ours</td><td>0.649</td><td>0.825</td><td>1.566</td></tr>
+      <tr><td>Event2Audio</td><td>0.266</td><td>0.668</td><td>1.250</td></tr>
+      <tr><td>Speckle (classical)</td><td>0.267</td><td>0.620</td><td>1.130</td></tr>
+      <tr class="ceiling"><td>Vocoder ceiling</td><td>0.953</td><td>0.979</td><td>3.673</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">
+    all rows pass through the same vocoder and the same metric code.
+  </p>
+<!-- 
+  <h2>BibTeX</h2>
+<pre>@article{karabatis2026speech,
+  title   = {Learning to Reconstruct Speech with an Event Camera},
+  author  = {Karabatis, Yianni and TODO},
+  journal = {TODO},
+  year    = {2026}
+}</pre> -->
+
+  <p class="note" style="text-align:right; margin-top:56px;">
+    <a href="https://ykarabatis.github.io">&larr; back to homepage</a>
+  </p>
+
+</div>
+</body>
+</html>
