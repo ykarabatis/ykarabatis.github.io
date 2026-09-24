@@ -46,6 +46,8 @@
   .specgrid .uid { font-weight:400; font-size:0.85em; color:var(--fg);
                    font-family:ui-monospace,Menlo,Consolas,monospace; }
   .specgrid .gap { text-align:center; color:var(--muted); }
+  td.uid { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:0.85em;
+           white-space:nowrap; }
   @media (prefers-color-scheme: dark) {
     :root { --fg:#e8e8e8; --muted:#9a9a9a; --rule:#333; --accent:#78aeed; }
     body { background:#111; }
@@ -58,7 +60,7 @@
 <body>
 <div class="wrap">
 
-  <h1>Learning to Reconstruct Speech with an Event Camera</h1>
+  <h1>EvSpeech: Learning to Reconstruct Speech with an Event Camera</h1>
 
   <p class="authors">
     <a href="https://ykarabatis.github.io">Yianni Karabatis</a>, <a href="https://www.aftersomemath.com/">Levi Burner</a>, <a href="https://www.cs.umd.edu/~edessale/">Eadom Dessalene</a>, <a href="https://imd.umd.edu/directory/matt-nolan">Matthew Nolan</a>, <a href="https://cs.umd.edu/~metzler/">Christopher A. Metzler</a>, <a href="https://users.umiacs.umd.edu/~fermulcm/">Cornelia Ferm&uuml;ller</a>, <a href="https://users.umiacs.umd.edu/~ramanid/">Ramani Duraiswami</a>, <a href="https://scholar.google.com/citations?user=7QmEsOwAAAAJ">Yiannis Aloimonos</a>
@@ -96,7 +98,7 @@ Our results demonstrate a clear advantage to using experimental data in the visu
   <table>
     <thead>
       <tr>
-        <th>Example</th>
+        <th>Test sample</th>
         <th>Ground truth</th>
         <th>Ours</th>
         <th>Event2Audio</th>
@@ -105,28 +107,28 @@ Our results demonstrate a clear advantage to using experimental data in the visu
     </thead>
     <tbody>
       <tr>
-        <td>1</td>
+        <td class="uid">DR4_FADG0_0000</td>
         <td><audio controls preload="none" src="audio\\gt\\DR4_FADG0_0000_target.wav"></audio></td>
         <td><audio controls preload="none" src="audio\\ours\\DR4_FADG0_0000_pred.wav"></audio></td>
         <td><audio controls preload="none" src="audio\\event2audio\\DR4_FADG0_0000_pred.wav"></audio></td>
         <td><audio controls preload="none" src="audio/speckevm/DR4_FADG0_0000_pred.wav"></audio></td>
       </tr>
       <tr>
-        <td>2</td>
+        <td class="uid">DR8_MSLB0_0004</td>
         <td><audio controls preload="none" src="audio\\gt\\DR8_MSLB0_0004_target.wav"></audio></td>
         <td><audio controls preload="none" src="audio\\ours\\DR8_MSLB0_0004_pred.wav"></audio></td>
         <td><audio controls preload="none" src="audio\\event2audio\\DR8_MSLB0_0004_pred.wav"></audio></td>
         <td><audio controls preload="none" src="audio/speckevm/DR8_MSLB0_0004_pred.wav"></audio></td>
       </tr>
       <tr>
-        <td>3</td>
+        <td class="uid">DR8_MSLB0_0003</td>
         <td><audio controls preload="none" src="audio\gt\DR8_MSLB0_0003_target.wav"></audio></td>
         <td><audio controls preload="none" src="audio\ours\DR8_MSLB0_0003_pred.wav"></audio></td>
         <td><audio controls preload="none" src="audio\event2audio\DR8_MSLB0_0003_pred.wav"></audio></td>
         <td><audio controls preload="none" src="audio/speckevm/DR8_MSLB0_0003_pred.wav"></audio></td>
       </tr>
       <tr>
-        <td>4</td>
+        <td class="uid">DR7_FCAU0_0004</td>
         <td><audio controls preload="none" src="audio/gt/DR7_FCAU0_0004_target.wav"></audio></td>
         <td><audio controls preload="none" src="audio/ours/DR7_FCAU0_0004_pred.wav"></audio></td>
         <td><audio controls preload="none" src="audio/event2audio/DR7_FCAU0_0004_pred.wav"></audio></td>
