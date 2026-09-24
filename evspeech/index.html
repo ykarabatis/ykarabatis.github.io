@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Learning to Reconstruct Speech with an Event Camera</title>
+<title>EvSpeech: Learning to Reconstruct Speech with an Event Camera</title>
 <style>
   :root { --fg:#1a1a1a; --muted:#666; --rule:#e2e2e2; --accent:#1a5fb4; }
   body { margin:0; padding:0 20px 80px; color:var(--fg);
@@ -35,6 +35,17 @@
   pre { background:#f6f6f6; padding:14px 16px; border-radius:6px;
         overflow-x:auto; font-size:0.85em; line-height:1.45; }
   .scroll { overflow-x:auto; }
+  /* spec-grid */
+  .specwide { width:min(1400px,94vw); margin-left:50%; transform:translateX(-50%); }
+  .specgrid { width:100%; min-width:760px; border-collapse:collapse; margin-top:14px; }
+  .specgrid th { font-weight:600; font-size:0.95em; padding:6px 8px; border-bottom:none; }
+  .specgrid td { padding:4px; border-bottom:none; vertical-align:middle; }
+  .specgrid th.rowlab { text-align:right; white-space:nowrap; width:1%;
+                        padding-right:12px; font-size:0.95em; }
+  .specgrid img { width:100%; height:auto; display:block; border-radius:3px; }
+  .specgrid .uid { font-weight:400; font-size:0.85em; color:var(--fg);
+                   font-family:ui-monospace,Menlo,Consolas,monospace; }
+  .specgrid .gap { text-align:center; color:var(--muted); }
   @media (prefers-color-scheme: dark) {
     :root { --fg:#e8e8e8; --muted:#9a9a9a; --rule:#333; --accent:#78aeed; }
     body { background:#111; }
@@ -50,7 +61,7 @@
   <h1>Learning to Reconstruct Speech with an Event Camera</h1>
 
   <p class="authors">
-    <a href="https://ykarabatis.github.io">Yianni Karabatis</a>, Levi Burner, Eadom Dessalene, Matthew Nolan, Christopher A. Metzler, Cornelia Fermuller, Ramani Duraiswami, Yiannis Aloimonos
+    <a href="https://ykarabatis.github.io">Yianni Karabatis</a>, <a href="https://www.aftersomemath.com/">Levi Burner</a>, <a href="https://www.cs.umd.edu/~edessale/">Eadom Dessalene</a>, <a href="https://imd.umd.edu/directory/matt-nolan">Matthew Nolan</a>, <a href="https://cs.umd.edu/~metzler/">Christopher A. Metzler</a>, <a href="https://users.umiacs.umd.edu/~fermulcm/">Cornelia Ferm&uuml;ller</a>, <a href="https://users.umiacs.umd.edu/~ramanid/">Ramani Duraiswami</a>, <a href="https://scholar.google.com/citations?user=7QmEsOwAAAAJ">Yiannis Aloimonos</a>
   </p>
   <p class="affil">University of Maryland, College Park</p>
 
@@ -62,9 +73,9 @@
   </div> -->
 
   <figure>
-    <img src="images/teaser.jpg" alt="teaser">
+    <img src="images/pipeline.svg" alt="teaser">
     <figcaption>
-      TODO: one-line caption. A laser speckle pattern on a vibrating surface, viewed by an
+      A laser speckle pattern on a vibrating surface, viewed by an
       event camera, carries enough information to recover intelligible speech.
     </figcaption>
   </figure>
@@ -75,15 +86,6 @@
 Specifically, an event camera observes defocused laser speckle reflected from a chip bag placed near a loudspeaker, and a network maps the event stream to a log-mel spectrogram.
 Prior work relies on hand-derived models or simulation-based training, which cannot capture the idiosyncratic responses of real-world objects to sound. We overcome this challenge by training on microsecond-synchronized events and audio. Compared to prior work, our method's performance significantly exceeds SOTA methods qualitatively and quantitatively. This is because training accounts for an object's real-world frequency response, allowing the network to learn priors useful at inference.
 Our results demonstrate a clear advantage to using experimental data in the visual microphone problem.
-  </p>
-
-  <h2>Method</h2>
-  <figure>
-    <img src="images/method.jpg" alt="method overview">
-    <figcaption>TODO: not a priority right now.</figcaption>
-  </figure>
-  <p>
-    TODO: can be done later
   </p>
 
   <h2>Audio results</h2>
@@ -132,6 +134,51 @@ Our results demonstrate a clear advantage to using experimental data in the visu
       </tr>
     </tbody>
   </table>
+  </div>
+
+  <h2>Spectrograms</h2>
+  <p class="note">
+    The same four utterances as above, one per column. The vertical axis is log-scaled
+    from 90 Hz to 8 kHz. Click any panel for full size.
+  </p>
+  <div class="specwide">
+    <div class="scroll">
+    <table class="specgrid">
+      <thead>
+      <tr><th></th><th><span class="uid">DR4_FADG0_0000</span></th><th><span class="uid">DR8_MSLB0_0004</span></th><th><span class="uid">DR8_MSLB0_0003</span></th><th><span class="uid">DR7_FCAU0_0004</span></th></tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th class="rowlab">Ground truth</th>
+        <td><a href="audio/gt/tgt_DR4_FADG0_0000_target.png" target="_blank"><img src="audio/gt/tgt_DR4_FADG0_0000_target.png" alt="Ground truth, example 1"></a></td>
+        <td><a href="audio/gt/tgt_DR8_MSLB0_0004_target.png" target="_blank"><img src="audio/gt/tgt_DR8_MSLB0_0004_target.png" alt="Ground truth, example 2"></a></td>
+        <td><a href="audio/gt/tgt_DR8_MSLB0_0003_target.png" target="_blank"><img src="audio/gt/tgt_DR8_MSLB0_0003_target.png" alt="Ground truth, example 3"></a></td>
+        <td><a href="audio/gt/tgt_DR7_FCAU0_0004_target.png" target="_blank"><img src="audio/gt/tgt_DR7_FCAU0_0004_target.png" alt="Ground truth, example 4"></a></td>
+      </tr>
+      <tr>
+        <th class="rowlab">Ours</th>
+        <td><a href="audio/ours/ours_DR4_FADG0_0000_pred.png" target="_blank"><img src="audio/ours/ours_DR4_FADG0_0000_pred.png" alt="Ours, example 1"></a></td>
+        <td><a href="audio/ours/ours_DR8_MSLB0_0004_pred.png" target="_blank"><img src="audio/ours/ours_DR8_MSLB0_0004_pred.png" alt="Ours, example 2"></a></td>
+        <td><a href="audio/ours/ours_DR8_MSLB0_0003_pred.png" target="_blank"><img src="audio/ours/ours_DR8_MSLB0_0003_pred.png" alt="Ours, example 3"></a></td>
+        <td><a href="audio/ours/ours_DR7_FCAU0_0004_pred.png" target="_blank"><img src="audio/ours/ours_DR7_FCAU0_0004_pred.png" alt="Ours, example 4"></a></td>
+      </tr>
+      <tr>
+        <th class="rowlab">Event2Audio</th>
+        <td><a href="audio/event2audio/e2a_DR4_FADG0_0000_pred.png" target="_blank"><img src="audio/event2audio/e2a_DR4_FADG0_0000_pred.png" alt="Event2Audio, example 1"></a></td>
+        <td><a href="audio/event2audio/e2a_DR8_MSLB0_0004_pred.png" target="_blank"><img src="audio/event2audio/e2a_DR8_MSLB0_0004_pred.png" alt="Event2Audio, example 2"></a></td>
+        <td><a href="audio/event2audio/e2a_DR8_MSLB0_0003_pred.png" target="_blank"><img src="audio/event2audio/e2a_DR8_MSLB0_0003_pred.png" alt="Event2Audio, example 3"></a></td>
+        <td><a href="audio/event2audio/e2a_DR7_FCAU0_0004_pred.png" target="_blank"><img src="audio/event2audio/e2a_DR7_FCAU0_0004_pred.png" alt="Event2Audio, example 4"></a></td>
+      </tr>
+      <tr>
+        <th class="rowlab">SpeckEVM</th>
+        <td><a href="audio/speckevm/spk_DR4_FADG0_0000_pred.png" target="_blank"><img src="audio/speckevm/spk_DR4_FADG0_0000_pred.png" alt="SpeckEVM, example 1"></a></td>
+        <td><a href="audio/speckevm/spk_DR8_MSLB0_0004_pred.png" target="_blank"><img src="audio/speckevm/spk_DR8_MSLB0_0004_pred.png" alt="SpeckEVM, example 2"></a></td>
+        <td><a href="audio/speckevm/spk_DR8_MSLB0_0003_pred.png" target="_blank"><img src="audio/speckevm/spk_DR8_MSLB0_0003_pred.png" alt="SpeckEVM, example 3"></a></td>
+        <td><a href="audio/speckevm/spk_DR7_FCAU0_0004_pred.png" target="_blank"><img src="audio/speckevm/spk_DR7_FCAU0_0004_pred.png" alt="SpeckEVM, example 4"></a></td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
   </div>
 
   <h2>Quantitative results</h2>
